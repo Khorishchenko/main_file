@@ -9,133 +9,132 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <vector>
+#include <iomanip>
 
 
 
-template <class T>
-struct Element {
-    T data;
-    Element* Next;
-};
+// https://www.youtube.com/watch?v=1cKvMZOJeeE&ab_channel=%23SimpleCode - VECTOR
 
+using namespace std;
 
-
-
-template <class T>
-class List {
-    Element<T>* Head;
-    Element<T>* Tail;
-    int count;
-
-public:
-    List();
-    ~List();
-
-    void Add(T data);             //Додавання елемента до списку  (Новий елемент стає останнім)
-    void Del();
-    void DelAll();
-    void Print() const;
-    int GetCount() const;
-    bool IsEmpty() const;
-    bool IsFull() const;
-};
-
-
-
-template<class T>
-List<T>::List() 
+int main()
 {
-    Head = Tail = nullptr;
-    count = 0;
-}
 
-template<class T>
-List<T>::~List() {
-    DelAll();
-}
+    vector<int> myVector(10, 4); 
 
-template<class T>
-int List<T>::GetCount() const {
-    return count;
-}
 
-template<class T>
-bool List<T>::IsEmpty() const {
-    return (Head == nullptr);
-}
-
-template<class T>
-bool List<T>::IsFull() const {
-    return (Head != nullptr);
-}
-
-template<class T>
-void List<T>::Add(T data) 
-{
-    Element<T>* tmp = new Element<T>;
-    tmp->data = data;
-    tmp->Next = nullptr;
-
-    if (Tail != nullptr) {
-        Tail->Next = tmp;
-        Tail = tmp;
+    for (int i = 0; i < myVector.size(); i++)
+    {
+        std::cout << setw(4) << myVector[i];
     }
-    else {
-        Head = Tail = tmp;
+    std::cout << endl;
+
+
+    std::cout << "My vector size is " << myVector.size() << std::endl; 
+    std::cout << "My vector capacity is " <<  myVector.capacity() << std::endl;     // Размер вектора по ячейкам помяты
+
+
+
+    myVector.resize(6); // устанавливаем длину, равную 6
+
+    for (int i = 0; i < myVector.size(); i++)
+    {
+        std::cout << setw(4) << myVector[i];
     }
-    count++;
-}
-
-template<class T>
-void List<T>::Del() {
-    if (Head != nullptr) {
-        Element<T>* tmp = Head;
-        Head = Head->Next;
-        delete tmp;
-        count--;
-    }
-}
-
-template<class T>
-void List<T>::DelAll() {
-    while (Head != nullptr) {
-        Del();
-    }
-}
-
-template<class T>
-void List<T>::Print() const {
-
-    Element<T>* temp = Head;              //Запам'ятовуємо адресу головного елемента
-
-    while (temp != nullptr) {             //Виводимо дані
-        std::cout << temp->data << " ";
-        temp = temp->Next;
-    }
-
     std::cout << std::endl;
-}
 
-int main() {
-    List<int> lst;
-    int size = 6, arr[] = { 6, 13, 4, 6, 7, 9 };
+    std::cout << "My vector size is " << myVector.size() << std::endl; 
+    std::cout << "My vector capacity is " <<  myVector.capacity() << std::endl;     // Размер вектора по ячейкам помяты
 
-    if (lst.IsEmpty()) {
-        std::cout << "The list is empty." << std::endl;
+
+
+
+    myVector.resize(12); // устанавливаем длину, равную 6
+
+
+    std::cout << "My vector size is " << myVector.size() << std::endl; 
+    std::cout << "My vector capacity is " <<  myVector.capacity() << std::endl;     // Раз
+
+
+
+
+
+    myVector = { 8, 7, 6, 5 }; // ок, длина myVector теперь равна 4!
+    std::cout << "length: " << myVector.size() << "  capacity: " << myVector.capacity() << '\n';
+
+
+    for (auto &element : myVector)
+        std::cout << element << ' ';
+    std::cout << std::endl;
+
+
+
+
+    myVector.push_back(5);
+    myVector.push_back(5);
+    myVector.push_back(5);
+    myVector.push_back(5);
+
+    for (auto &element : myVector)
+        std::cout << element << ' ';
+    std::cout << std::endl;
+
+    std::cout << "length: " << myVector.size() << "  capacity: " << myVector.capacity() << '\n';
+
+
+
+
+    myVector.clear();         // Очистить вектор 
+
+    std::cout << "My Vector size is " << myVector.size() << std::endl;
+    std::cout << "My vector capacity is " <<  myVector.capacity() << std::endl;
+
+    for (auto &element : myVector)
+        std::cout << element << '|';
+    std::cout << std::endl;
+
+
+
+
+    myVector.reserve(100);             // Выделить количество памяти по ячейкам  
+
+    std::cout << "My Vector size is " << myVector.size() << std::endl;
+    std::cout << "My vector capacity is " <<  myVector.capacity() << std::endl;
+
+
+
+    std::cout << ((bool)myVector.empty()) << std::endl;    // Проверка на наличия значения в векторе 1 нету 0 есть 
+
+
+
+    myVector.resize(20, 10);  // Создать вектор на 20 элементы заполнить значением 10 все элементы 
+
+
+    std::cout << "My Vector size is " << myVector.size() << std::endl;
+    std::cout << "My vector capacity is " <<  myVector.capacity() << std::endl;
+
+    std::cout << ((bool)myVector.empty()) << std::endl;
+
+    for (int i = 0; i < myVector.size(); i++)
+    {
+        std::cout << setw(4) << myVector[i];
     }
-    // if (lst.IsFull()) {
-    //     std::cout << "The list is full." << std::endl;
-    // }
+    std::cout << std::endl;
 
-    for (int i = 0; i < size; i++) {
-        lst.Add(arr[i]);
-    }
 
-    lst.Print();
 
-    if (lst.IsEmpty()) {
-        std::cout << "The list is empty." << std::endl;
-    }
+    int index = 3;
+    myVector.erase(myVector.begin() + index);
 
-    return 0;
+
+    for (auto const &element: myVector)
+        std::cout << std::setw(4) << element;
+    std::cout << std::endl;
+
+    std::cout << "My Vector size is " << myVector.size() << std::endl; 
+    cout << "My vector capacity is " <<  myVector.capacity() << std::endl;
+
+    cout << std::endl;
+
 }
