@@ -17,27 +17,46 @@
 #include <cctype> // для tolower
 
 using namespace std;
-void Divide(int a, int b) {
-	try {
-		if (b == 0) {
-			throw "Divide by 0";
-		}
-		cout << a / b;
-	}
-	catch (const char *ex) {
-		cout << "Inside - " << ex << endl;
-		// throw;
-	}
-}
 
-int main() {
 
-	try {
-		Divide(4, 0);
-	}
-	catch (const char *ex) {
-		cout << "Inside main- " << ex << endl;
-	}
+class A
+{
+    char value;
+public:
+    A() {}
+    A(char value) :  value(value) {std::cout << "A" << std::endl; } 
+    A(const A& o) : value(o.value) {std::cout << "AA" << std::endl;}
+};
 
-	return 0;
+class B : virtual public A
+{
+   char value;
+public:
+   B() {}
+   B(char value) :  value(value) {std::cout << "B" << std::endl; } 
+   B(const B& o) : value(o.value) {std::cout << "BB" << std::endl;}
+};
+
+
+class C : virtual public A
+{
+   char value;
+public:
+   C() {}
+   C(char value) :  value(value) {std::cout << "C" << std::endl; } 
+   C(const C& o) : value(o.value) {std::cout << "CC" << std::endl;}
+};
+
+
+class E : B, C
+{
+public:
+    E(char value) : A(value), B(value), C(value) {}
+};
+
+int main() 
+{
+    E o1('c');
+    A o2 = o1;
+
 }
