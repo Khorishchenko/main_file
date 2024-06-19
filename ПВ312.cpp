@@ -33,10 +33,124 @@
 
 // https://www.youtube.com/watch?v=1cKvMZOJeeE&ab_channel=%23SimpleCode - VECTOR
 
-using namespace std;
+
+// int main() 
+// {
+//     std::vector<int> vec = {1, 2, 3, 4, 5};
+//     std::vector<int> vec2;
+//     std::vector<int> vec3(10);
 
 
-using namespace std;
+    // std::cout << "Elements of the vector in reverse order: ";
+    // for ( std::vector<int>::reverse_iterator rit = vec.rbegin(); rit != vec.rend(); ++rit ) {
+    //     std::cout << *rit << " ";
+    // }
+    // std::cout << std::endl;
+
+    // auto it = vec.begin();
+
+    // for (; it != vec.end(); it++ )
+    //     std::cout << *it << ' ';
+    // std::cout << std::endl;
+
+
+    // for ( int i = vec.size() - 1; i >= 0 ; i-- )
+    //     std::cout << vec[i] << ' ';
+    // std::cout << std::endl;
+    
+
+
+    // std::list<int> lst {10, 20, 30, 40, 50};
+
+    // std::list<int>::iterator it = lst.begin();
+
+    // while ( it != lst.end() )
+    // {
+    //     std::cout << *it << ' ';
+    //     it++;
+    // }
+    // std::cout << std::endl;
+
+    // it = lst.begin();
+
+
+
+    // while ( it != lst.end() )
+    // {
+    //     if ( *it == 30 )
+    //         lst.erase(it);
+    //     it++;
+    // }
+    // std::cout << std::endl;
+
+
+
+    // for (const auto& element : lst )
+    //     std::cout << element << ' ';
+    // std::cout << std::endl;
+    
+    // int index;
+    // std::cout << "enter index element: ";
+    // std::cin >> index;
+
+    // it = lst.begin();
+    // advance(it, --index);
+    // lst.erase(it);
+
+    // for (const auto& element : lst )
+    //     std::cout << element << ' ';
+    // std::cout << std::endl;
+
+
+    // lst.push_back(22);
+
+
+    // for (const auto& element : lst )
+    //     std::cout << element << ' ';
+    // std::cout << std::endl;
+
+
+    // std::cout << "enter index element: ";
+    // std::cin >> index;
+
+    // int data;
+    // std::cout << "enter element: ";
+    // std::cin >> data;
+
+
+    // it = lst.begin();
+    // advance(it, --index);
+
+    // lst.insert(it, data);
+
+
+    // for (const auto& element : lst )
+    //     std::cout << element << ' ';
+    // std::cout << std::endl;
+
+
+    // lst.sort();
+
+    // for (const auto& element : lst )
+    //     std::cout << element << ' ';
+    // std::cout << std::endl;
+
+
+    // lst.push_front(33);
+
+
+    // for (const auto& element : lst )
+    //     std::cout << element << ' ';
+    // std::cout << std::endl;
+
+
+
+//     return 0;
+// }
+
+
+
+// using namespace std;
 
 bool is_anagram(std::string word, std::string anagram);
 int count_unique_words(std::string sentence);
@@ -45,12 +159,9 @@ int count_unique_words(std::string sentence);
 int main()
 {
 
-	// set < [тип] > <имя>;
-	// multiset < [тип] > <имя>
 
 	// std::set <int> st; // пример
-	// std::multiset <int> mst;
-
+    
 // Чтобы добавить новый элемент нужно использовать функцию insert():
 
 	// for (int i = 5; i >= 0; i--){
@@ -109,8 +220,6 @@ int main()
  // delete elemet
     // std::cout << "Delete element: \n";
     // mst.erase(4);
-	// if (mst.end() != mst.erase(4))
-
 
 	// copy(mst.begin(), mst.end(), std::ostream_iterator<int>(std::cout, " ")), std::cout << '\n';
 
