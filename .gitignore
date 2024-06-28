@@ -7,6 +7,6 @@ build/
 # Ігнорування всіх лог-файлів
 *.log
 
-.axe
-
-.a.auto
+a.auto
+.vscode/
+a.exe
