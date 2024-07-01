@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <vector>
-#include <string>
+#include <string> 
 #include <algorithm>
 #include <cctype> // для tolower
 #include <cctype> // для tolower
@@ -47,7 +47,63 @@ using namespace std;
 // - Статичні члени класу
 // - Доступ до приватних даних через методи
 
+// class Human
+// {
+// private:
+//     int age;
+//     std::string name;
 
+// public:
+
+//     // Human()
+//     // {
+//     //     age = 0;
+//     //     name = "no name";
+//     // }
+
+//     // Human(std::string name, int age) : name(name), age(age)
+//     // {
+
+//     // }
+
+    // Human( std::string Name = "no name", int Age  = 0 ) : name( Name ) , age( Age )
+    // {
+    //     name = Name;
+    //     age = Age;
+    // }
+
+//     int getAge()
+//     {
+//         return age;
+//     }
+
+//     std::string getName()
+//     {
+//         return name;
+//     }
+
+//     void setAge( int age )
+//     {
+//         this->age = age;
+//     }
+
+//     void setName(std::string name)
+//     {
+//         this->name = name;
+//     }
+
+// };
+
+// int main()
+// {
+//     Human people;
+
+//     // people.setAge(20);
+//     // people.setName("Anton");
+
+//     std::cout << "Name: " << people.getName() << ' ' << "Age: " << people.getAge() << std::endl;
+
+// }
  
 
 
