@@ -112,6 +112,45 @@ using namespace std;
 
 
 
+// =============================================//
+// Деструктор
+
+
+
+
+
+
+
+
+
+
+
+
+
+// =============================================//
+// Порядок виклику конструкторів та деструкторів
+
+// class A{
+// public:
+//     A() {std::cout << "This is const A" << std::endl;}
+//     ~A() { std::cout << "This is dest A " << std::endl; }
+// };
+
+
+// class B{
+// public:
+//     B() {std::cout << "This is const B" << std::endl;}
+//     ~B() { std::cout << "This is dest B " << std::endl; }
+// };
+
+// int main()
+// {
+//     A a;
+//     B b;
+// }
+
+
+
 
 
 
@@ -169,37 +208,8 @@ using namespace std;
 
 
 
-// Умова завдання 2:
-
-// Створіть клас Person, який представляє особу з ім'ям і віком. Клас повинен мати два конструктори: один, який приймає ім'я та вік, та інший, 
-// який приймає лише ім'я. 
-// В цьому випадку вік має ініціюватися значенням за замовчуванням (наприклад, 0). 
-// Використовуйте делегування конструкторів для забезпечення можливості створювати об'єкти Person з ім'ям і віком або лише з ім'ям.
 
 
-// class Person
-// {
-// public:
-//     Person(std::string name, int age) : m_name(name), m_age(age) {}
-//     Person(std::string name) : Person(name, 0) {}
-
-//     void Print() const{
-//         std::cout << "Name: " << m_name << ". Age: " << m_age << std::endl;
-//     }
-// private:
-//     std::string m_name;
-//     int         m_age;
-
-// };
-
-// int main()
-// {
-//     Person o1("Anton", 20);
-//     o1.Print();
-
-//     Person o2("Sergii");
-//     o2.Print();
-// }
 
 
 
@@ -210,3 +220,63 @@ using namespace std;
 // https://youtu.be/SiOfT03jSU0 - Дружні класи. ООП. friend class.
 
 // Дружні функції
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Умова завдання 2:
+
+// Створіть клас Person, який представляє особу з ім'ям і віком. Клас повинен мати два конструктори: один, який приймає ім'я та вік, та інший, 
+// який приймає лише ім'я. 
+// В цьому випадку вік має ініціюватися значенням за замовчуванням (наприклад, 0). 
+// Використовуйте делегування конструкторів для забезпечення можливості створювати об'єкти Person з ім'ям і віком або лише з ім'ям.
+
+
+
+
+
+
+
+
+//=================================================================//
+// Реалізація методів за межами класу
+// Спискова ініціалізація
+
+
+class Titan
+{
+    std::string _name;
+    int m_age;
+    const int size;
+public:
+    Titan(std::string name, int conssst) : _name(name), m_age(0), size(conssst)
+    {
+        // size = conssst;
+    }
+
+    void showName_Titan();
+};
+
+void Titan::showName_Titan()
+{
+    std::cout << _name << ' ' << m_age << ' '  << size << std::endl;
+}
+
+
+// int main(){
+//     Titan b("Mark", 10);
+   
+//     b.showName_Titan();
+// }
