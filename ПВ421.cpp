@@ -47,11 +47,15 @@ using namespace std;
 // - Статичні члени класу
 // - Доступ до приватних даних через методи
 
+
+
 // class Human
 // {
 // private:
 //     int age;
 //     std::string name;
+
+//     const int id;
 
 // public:
 
@@ -63,14 +67,13 @@ using namespace std;
 
 //     // Human(std::string name, int age) : name(name), age(age)
 //     // {
-
+        
 //     // }
 
-    // Human( std::string Name = "no name", int Age  = 0 ) : name( Name ) , age( Age )
-    // {
-    //     name = Name;
-    //     age = Age;
-    // }
+//     Human( std::string Name = "no name", int Age  = 0 , int Id = 0) : name( Name ) , age( Age ), id( Id )
+//     {
+        
+//     }
 
 //     int getAge()
 //     {
@@ -96,7 +99,7 @@ using namespace std;
 
 // int main()
 // {
-//     Human people;
+//     Human people("Anton", 24, 5);
 
 //     // people.setAge(20);
 //     // people.setName("Anton");
@@ -114,6 +117,82 @@ using namespace std;
 
 // =============================================//
 // Деструктор
+
+
+// class Array
+// {
+// private:
+//     int *ptr;
+//     int size;
+// public:
+
+//     Array ( int size = 0 )
+//     {
+//         if ( size > 0 )
+//         {
+//             ptr = new int[size];
+
+//             for ( int i = 0; i < size; i++)
+//                 ptr[i] = rand() % 10;
+
+//             this->size = size;
+//         }
+//         else
+//         {
+//             ptr = nullptr;
+//             size = 0;
+//         }
+//     }
+
+//     void Print()
+//     {
+//         if ( ptr != nullptr )
+//         {
+//             for ( int i = 0; i < size; i++ )
+//                 std::cout << ptr[i] << ' ';
+//             std::cout << "\n";
+//         }
+//         else
+//         {
+//             std::cout << "our arr is empty " << std::endl;
+//         }
+//     }
+
+//     ~Array()
+//     {
+//         if ( ptr != nullptr )
+//         {
+//             delete[] ptr;
+//             std::cout << " destructor delete arr " << std::endl;
+//         }
+//         else
+//         {
+//              std::cout << " destructor " << std::endl;
+//         }
+
+//     }
+// };
+
+
+// int main()
+// {
+//     Array arr;
+//     arr.Print();
+
+//     Array arr1( 15 );
+//     arr1.Print();
+
+//     {
+
+//         Array o1( 10 );
+//         o1.Print();
+
+
+//     }
+
+//     std::cout << "hello " << std::endl;
+
+// }
 
 
 
@@ -154,8 +233,36 @@ using namespace std;
 
 
 
+//=================================================================//
+// Реалізація методів за межами класу
+// Спискова ініціалізація
 
 
+class Titan
+{
+    std::string _name;
+    int m_age;
+    const int size;
+public:
+    Titan(std::string name, int conssst) : _name(name), m_age(0), size(conssst)
+    {
+        // size = conssst;
+    }
+
+    void showName_Titan();
+};
+
+void Titan::showName_Titan()
+{
+    std::cout << _name << ' ' << m_age << ' '  << size << std::endl;
+}
+
+
+// int main(){
+//     Titan b("Mark", 10);
+   
+//     b.showName_Titan();
+// }
 
 
 
@@ -242,41 +349,3 @@ using namespace std;
 // який приймає лише ім'я. 
 // В цьому випадку вік має ініціюватися значенням за замовчуванням (наприклад, 0). 
 // Використовуйте делегування конструкторів для забезпечення можливості створювати об'єкти Person з ім'ям і віком або лише з ім'ям.
-
-
-
-
-
-
-
-
-//=================================================================//
-// Реалізація методів за межами класу
-// Спискова ініціалізація
-
-
-class Titan
-{
-    std::string _name;
-    int m_age;
-    const int size;
-public:
-    Titan(std::string name, int conssst) : _name(name), m_age(0), size(conssst)
-    {
-        // size = conssst;
-    }
-
-    void showName_Titan();
-};
-
-void Titan::showName_Titan()
-{
-    std::cout << _name << ' ' << m_age << ' '  << size << std::endl;
-}
-
-
-// int main(){
-//     Titan b("Mark", 10);
-   
-//     b.showName_Titan();
-// }
