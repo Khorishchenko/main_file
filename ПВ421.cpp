@@ -222,10 +222,22 @@ using namespace std;
 //     ~B() { std::cout << "This is dest B " << std::endl; }
 // };
 
+// class C{
+// public:
+//     C() {std::cout << "This is const C" << std::endl;}
+//     ~C() { std::cout << "This is dest C" << std::endl; }
+// };
+
 // int main()
 // {
 //     A a;
 //     B b;
+
+//     // {
+//     //     A a1;
+//     // }
+
+//     C c;
 // }
 
 
@@ -238,25 +250,24 @@ using namespace std;
 // Спискова ініціалізація
 
 
-class Titan
-{
-    std::string _name;
-    int m_age;
-    const int size;
-public:
-    Titan(std::string name, int conssst) : _name(name), m_age(0), size(conssst)
-    {
-        // size = conssst;
-    }
+// class Titan
+// {
+//     std::string _name;
+//     int m_age;
+//     const int size;
+// public:
+//     Titan(std::string name, int conssst) : _name(name), m_age(0), size(conssst)
+//     {
+//         // size = conssst;
+//     }
 
-    void showName_Titan();
-};
+//     void showName_Titan();
+// };
 
-void Titan::showName_Titan()
-{
-    std::cout << _name << ' ' << m_age << ' '  << size << std::endl;
-}
-
+// void Titan::showName_Titan()
+// {
+//     std::cout << _name << ' ' << m_age << ' '  << size << std::endl;
+// }
 
 // int main(){
 //     Titan b("Mark", 10);
@@ -284,8 +295,8 @@ void Titan::showName_Titan()
 
 // class MyClass {
 // public:
-//     void SetData(int data) {
-//         this->data = data;  // Використовуємо this для доступу до змінної-члена data
+//     void SetData( int Data ) {
+//         data = Data;  // Використовуємо this для доступу до змінної-члена data
 //     }
 
 //     int GetData() {
@@ -308,6 +319,7 @@ void Titan::showName_Titan()
 //     obj.GetPtr();
 
 
+
 //     std::cout << "Data: " << obj.GetData() << std::endl;  // Отримуємо значення data за допомогою методу GetData
 
 //     return 0;
@@ -324,20 +336,74 @@ void Titan::showName_Titan()
 
 
 // https://youtu.be/Ic19I0kcBnU - Дружні функції та класи приклад
-// https://youtu.be/SiOfT03jSU0 - Дружні класи. ООП. friend class.
 
 // Дружні функції
 
+class Point
+{
+private:
+    int x;
+    int y;
+public:
+
+    Point(int x, int y) : x(x), y(y) {}
+
+    friend void print( Point obj );
+};
+
+void print( Point obj )
+{
+    std::cout << obj.x << ' ' << obj.y << std::endl;
+}
+
+int main()
+{
+    Point o1(10, 20), o2(30, 40);
+
+    print( o1 );
+    print( o2 );
+}
 
 
 
 
+class B;
+
+class A
+{
+    int valueA;
+public:
+    A ( int value ) : valueA(value) {}
+
+    friend void sum ( A objA, B objB );
+};
+
+class B
+{
+    int valueB;
+public:
+    B( int value ) : valueB(value) {}
+
+    friend void sum ( A objA, B objB );
+
+};
+
+void sum(A, B);
+
+int main()
+{
+    A o1(10);
+    B o2(20);
+    sum( o1, o2 );
+    sum( A(20), B(30) );
 
 
+}
 
-
-
-
+void sum ( A objA, B objB )
+{
+    std::cout << objA.valueA + objB.valueB << std::endl;
+}
 
 
 
