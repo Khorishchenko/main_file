@@ -17,9 +17,3 @@
 #include <cctype> // для tolower
 
 using namespace std;
-
-
-int main()
-{
-    std::cout << "Hello world" << std::endl;
-}
