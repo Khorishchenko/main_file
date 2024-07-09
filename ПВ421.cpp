@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// * + - / % 
 
 // Перевантажимо оператори порівняння >, <, >= та <= == and !=
 
@@ -9,21 +10,37 @@ class Sum{
     public:
         Sum(int a) : a (a) {}
 
+        friend void operator << ( std::ostream& out, const Sum &obj );
+        friend void operator >> ( std::istream& in, const Sum &obj );
+
 };
 
+void operator << ( std::ostream& out, const Sum &obj )
+{
+    out << obj.a << std::endl;
+}
+
+void operator >> ( std::istream& in, const Sum &obj )
+{
+    in >> obj.a;
+}
 
 int main()
 {
     Sum a(30);
     Sum b(30);
 
+    std::cout << a;
 
-    if(a > b)
-        std::cout << "a > b" << std::endl;
-    else if(a == b)
-        std::cout << "a == b" << std::endl;
-    else
-        std::cout << " a < b" << std::endl;
+    std::cin >> a;
+
+
+    // if(a > b)
+    //     std::cout << "a > b" << std::endl;
+    // else if(a == b)
+    //     std::cout << "a == b" << std::endl;
+    // else
+    //     std::cout << " a < b" << std::endl;
 
 }
 
