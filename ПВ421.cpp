@@ -11,7 +11,7 @@ class Sum{
         Sum(int a) : a (a) {}
 
         friend void operator << ( std::ostream& out, const Sum &obj );
-        friend void operator >> ( std::istream& in, const Sum &obj );
+        friend void operator >> ( std::istream& in,  Sum &obj );
 
 };
 
@@ -20,7 +20,7 @@ void operator << ( std::ostream& out, const Sum &obj )
     out << obj.a << std::endl;
 }
 
-void operator >> ( std::istream& in, const Sum &obj )
+void operator >> ( std::istream& in,  Sum &obj )
 {
     in >> obj.a;
 }
