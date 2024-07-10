@@ -1,7 +1,50 @@
 #include <iostream>
 #include <string>
 
-// * + - / % 
+// Перевантажимо оператори * + - / % 
+
+class Point
+{
+    int value;
+public:
+    Point(int value) : value(value) {}
+
+    Point operator + ( const Point &obj )
+    {
+        Point tmp(this->value + obj.value);
+        return tmp;
+    }
+
+    void print()
+    {
+        std::cout << this->value << std::endl;
+    }
+};
+
+
+int main()
+{
+    Point a(10);
+    Point b(20);
+
+    Point c = a + b; // == a.operator+(b);
+
+    c.print();
+
+    Point d = a - b;
+
+
+
+    // int x = 10;
+    // int y = 5;
+
+    // std::cout << x + y << std::endl;
+
+    return 0;
+}
+
+
+
 
 // Перевантажимо оператори порівняння >, <, >= та <= == and !=
 
@@ -12,8 +55,8 @@ class Sum{
 
         friend void operator << ( std::ostream& out, const Sum &obj );
         friend void operator >> ( std::istream& in,  Sum &obj );
-
 };
+
 
 void operator << ( std::ostream& out, const Sum &obj )
 {
@@ -25,31 +68,91 @@ void operator >> ( std::istream& in,  Sum &obj )
     in >> obj.a;
 }
 
-int main()
+
+
+
+// int main()
+// {
+//     Sum a(30);
+//     Sum b(30);
+
+//     std::cout << a;
+
+//     std::cin >> a;
+
+
+//     // if(a > b)
+//     //     std::cout << "a > b" << std::endl;
+//     // else if(a == b)
+//     //     std::cout << "a == b" << std::endl;
+//     // else
+//     //     std::cout << " a < b" << std::endl;
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+// Перегрузка оператора индексации []
+
+class Int
 {
-    Sum a(30);
-    Sum b(30);
+public:
+    
 
-    std::cout << a;
+private:
+    int arr[10];    
 
-    std::cin >> a;
+};
 
 
-    // if(a > b)
-    //     std::cout << "a > b" << std::endl;
-    // else if(a == b)
-    //     std::cout << "a == b" << std::endl;
-    // else
-    //     std::cout << " a < b" << std::endl;
 
-}
+// int main()
+// {
 
+//     return 0;
+// }
 
 
 
 
 
- 
+
+
+
+//  Перегрузка оператора ()
+
+
+class Operaor
+{
+private:
+        int arr[5][5];
+public:
+     
+    friend std::ostream& operator<<(std::ostream &out, Operaor &o);
+};
+
+
+
+// int main()
+// {
+
+
+// }
+
+
+
+
+
+
+
 // Перевантаження операторів інкременту та декременту
 // Оскільки оператори інкременту та декременту є унарними та змінюють свої операнди,
 // то навантаження слід виконувати через методи класу.
@@ -102,80 +205,4 @@ std::ostream& operator<<(std::ostream &out, const Number &obj)
 //     // std::cout << x   <<   std::endl;
 
 //     return 0;
-// }
-
-
-
-
-// Перегрузка оператора индексации []
-
-class Int
-{
-public:
-    Int()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            arr[i] = rand() % 10;
-        }
-    }
-
-
-    void Print() const{
-        for (int i = 0; i < 10; i++)
-        {
-            std::cout << arr[i] << ' ';
-        }
-        std::cout << std::endl;
-    }
-
-private:
-    int arr[10];    
-
-};
-
-
-
-// int main()
-// {
-
-//     return 0;
-// }
-
-
-
-
-//  Перегрузка оператора ()
-
-
-class Operaor
-{
-private:
-        int arr[5][5];
-public:
-     
-    friend std::ostream& operator<<(std::ostream &out, Operaor &o);
-};
-
-
-
-// int main()
-// {
-//     Operaor a;
-
-//     std::cout << a << std::endl;
-
-//     a(3, 3) = 5;
-
-//     std::cout << a << std::endl;
-
-
-//     a();
-
-//     std::cout << a << std::endl;
-
-//     a(10);
-
-//     std::cout << a << std::endl;
-
 // }
