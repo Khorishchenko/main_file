@@ -1,208 +1,110 @@
 #include <iostream>
 #include <string>
 
-// Перевантажимо оператори * + - / % 
 
-class Point
-{
-    int value;
+
+// Перевантаження оператора =, Конструктор перенесення та Конструктор копіювання
+
+class MyString {
 public:
-    Point(int value) : value(value) {}
+    // Конструктор за замовчуванням
+    MyString() : data(nullptr) {}
 
-    Point operator + ( const Point &obj )
+    MyString(const char *str)
     {
-        Point tmp(this->value + obj.value);
-        return tmp;
+        if (str != nullptr) {
+            data = new char[strlen(str) + 1];
+            strcpy(data, str);
+        } else {
+            data = nullptr;
+        }
     }
 
-    void print()
-    {
-        std::cout << this->value << std::endl;
+    // Конструктор копіювання
+    MyString(const MyString &other) {
+        if (other.data != nullptr) 
+        {
+            data = new char[strlen(other.data) + 1];
+            strcpy(data, other.data);
+        } 
+        else 
+        {
+            data = nullptr;
+        }
     }
-};
 
-
-int main()
-{
-    Point a(10);
-    Point b(20);
-
-    Point c = a + b; // == a.operator+(b);
-
-    c.print();
-
-    Point d = a - b;
-
-
-
-    // int x = 10;
-    // int y = 5;
-
-    // std::cout << x + y << std::endl;
-
-    return 0;
-}
-
-
-
-
-// Перевантажимо оператори порівняння >, <, >= та <= == and !=
-
-class Sum{
-    int a;
-    public:
-        Sum(int a) : a (a) {}
-
-        friend void operator << ( std::ostream& out, const Sum &obj );
-        friend void operator >> ( std::istream& in,  Sum &obj );
-};
-
-
-void operator << ( std::ostream& out, const Sum &obj )
-{
-    out << obj.a << std::endl;
-}
-
-void operator >> ( std::istream& in,  Sum &obj )
-{
-    in >> obj.a;
-}
-
-
-
-
-// int main()
-// {
-//     Sum a(30);
-//     Sum b(30);
-
-//     std::cout << a;
-
-//     std::cin >> a;
-
-
-//     // if(a > b)
-//     //     std::cout << "a > b" << std::endl;
-//     // else if(a == b)
-//     //     std::cout << "a == b" << std::endl;
-//     // else
-//     //     std::cout << " a < b" << std::endl;
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-// Перегрузка оператора индексации []
-
-class Int
-{
-public:
-    
-
-private:
-    int arr[10];    
-
-};
-
-
-
-// int main()
-// {
-
-//     return 0;
-// }
-
-
-
-
-
-
-
-
-//  Перегрузка оператора ()
-
-
-class Operaor
-{
-private:
-        int arr[5][5];
-public:
-     
-    friend std::ostream& operator<<(std::ostream &out, Operaor &o);
-};
-
-
-
-// int main()
-// {
-
-
-// }
-
-
-
-
-
-
-
-// Перевантаження операторів інкременту та декременту
-// Оскільки оператори інкременту та декременту є унарними та змінюють свої операнди,
-// то навантаження слід виконувати через методи класу.
-
-
-class Number
-{
-    int a;
-    public:
-    Number(int a ) : a(a){}
-
-
-    Number operator++(){
-        ++(this->a);
+    // Конструктор переміщення
+    MyString(MyString &&other)  {
+        data = other.data;
+        other.data = nullptr;
+    }
+
+    // Перевантаження оператора присвоювання
+    MyString& operator=(const MyString &other) {
+        if (this != &other) 
+        {
+            if (data != nullptr)
+                delete[] data;
+
+            if (other.data != nullptr) {
+                data = new char[strlen(other.data) + 1];
+                strcpy(data, other.data);
+            } 
+            else 
+            {
+                data = nullptr;
+            }
+        }
         return *this;
     }
 
-    Number operator++(int){
-         Number tmp(this->a);
-        ++(this->a);
-        return tmp;
+    // Деструктор
+    ~MyString() {
+        if (data != nullptr)
+            delete[] data;
     }
 
+    // Виведення рядка
+    void print()  {
+        // std::cout << (data ? data : "Empty") << std::endl;
 
-    friend std::ostream& operator<<(std::ostream &out, const Number &obj);
+        if (data != nullptr)
+        {
+            std::cout << data << std::endl;
+        }
+        else{
+            std::cout <<  "Empty" << std::endl;
+        }
+    }
+
+private:
+    char* data;
 };
 
-std::ostream& operator<<(std::ostream &out, const Number &obj)
+int main() 
 {
-    out << obj.a;
-    return out;
+    MyString s1;
+    MyString s2("Hello, World");
+    MyString s3 = s2; // Виклик конструктору копіювання
+    MyString s4("hello");
+
+    s4 = s2; // Виклик перевантаженого оператора присвоювання
+
+    s2.print();
+    s4.print();
+
+
+
+
+
+
+    MyString s5 = std::move(s4); // Виклик конструктору переміщення
+
+    // s1.print(); // "Empty"
+    // s2.print(); // "Hello, World"
+    // s3.print(); // "Hello, World"
+    s4.print(); // "Empty"
+    s5.print(); // "Hello, World"
+
+    return 0;
 }
-
-// int main()
-// {
-//     Number a(10);
-
-
-
-//     std::cout << ++a << std::endl;
-//     std::cout << a++ << std::endl;
-//     std::cout << a << std::endl;
-
-
-
-//     // int x = 10;
-
-//     // std::cout << ++x << std::endl;
-//     // std::cout << x++ <<  ' ' << x << std::endl;
-//     // std::cout << x   <<   std::endl;
-
-//     return 0;
-// }
