@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include <cstring>
 
 
 // Перевантаження оператора =, Конструктор перенесення та Конструктор копіювання
@@ -10,7 +10,7 @@ public:
     // Конструктор за замовчуванням
     MyString() : data(nullptr) {}
 
-    MyString(const char *str)
+    MyString( const char *str )
     {
         if (str != nullptr) {
             data = new char[strlen(str) + 1];
@@ -21,90 +21,131 @@ public:
     }
 
     // Конструктор копіювання
-    MyString(const MyString &other) {
-        if (other.data != nullptr) 
+    MyString( const MyString &obj )
+    {
+        std::cout << " constructor copy " << std::endl;
+        if ( obj.data != nullptr )
         {
-            data = new char[strlen(other.data) + 1];
-            strcpy(data, other.data);
-        } 
-        else 
+            data = new char[ strlen(obj.data) + 1 ];
+
+            for ( int i = 0; i < strlen(obj.data); i++)
+                data[i] = obj.data[i];
+            data[strlen(obj.data)] = '\0';
+        }
+        else
         {
             data = nullptr;
         }
     }
 
-    // Конструктор переміщення
-    MyString(MyString &&other)  {
-        data = other.data;
-        other.data = nullptr;
-    }
+   
+
+
+
 
     // Перевантаження оператора присвоювання
-    MyString& operator=(const MyString &other) {
-        if (this != &other) 
+    MyString& operator = ( const MyString &obj )
+    {
+        std::cout << " operator = " << std::endl;
+        if ( this == &obj )
         {
-            if (data != nullptr)
-                delete[] data;
+            return *this;
+        }
 
-            if (other.data != nullptr) {
-                data = new char[strlen(other.data) + 1];
-                strcpy(data, other.data);
-            } 
-            else 
-            {
-                data = nullptr;
-            }
+        if ( data != nullptr && obj.data != nullptr )
+        {
+            delete [] data;
+
+            data = new char[ strlen(obj.data) + 1 ];
+
+            for ( int i = 0; i < strlen(obj.data); i++)
+                data[i] = obj.data[i];
+            data[strlen(obj.data)] = '\0';
         }
         return *this;
     }
 
+    // Конструктор переміщення
+    MyString( MyString && obj)
+    {
+        data = obj.data;
+        obj.data = nullptr;
+    }
+    
+
     // Деструктор
     ~MyString() {
         if (data != nullptr)
+        {
+            
             delete[] data;
+            std::cout << "destructor" << std::endl;
+        }
     }
 
     // Виведення рядка
-    void print()  {
-        // std::cout << (data ? data : "Empty") << std::endl;
-
-        if (data != nullptr)
-        {
+    void print() const
+    {
+        if ( data != nullptr )
             std::cout << data << std::endl;
-        }
-        else{
-            std::cout <<  "Empty" << std::endl;
-        }
+        else
+            std::cout << " str is empty " << std::endl;
     }
+    
 
 private:
-    char* data;
+    // MyString( const MyString &obj ) = delete; // заборона використання конструктора копіювання !!!
+    // MyString& operator = ( const MyString &obj ) = delete; // заборона використання оператора = !!!
+    char * data;
+
 };
+
+void print( const MyString obj )
+{
+    obj.print();
+}
 
 int main() 
 {
-    MyString s1;
-    MyString s2("Hello, World");
-    MyString s3 = s2; // Виклик конструктору копіювання
-    MyString s4("hello");
 
-    s4 = s2; // Виклик перевантаженого оператора присвоювання
 
-    s2.print();
-    s4.print();
+    MyString str( "Hello world" );
+    str.print();
 
 
 
+    // // Виклик конструктору копіювання
+    MyString str2( str );
+    str2.print();
+
+    print(str2);
+
+    MyString str3 = str2;
+    str3.print();
 
 
 
-    MyString s5 = std::move(s4); // Виклик конструктору переміщення
+    // Виклик перевантаженого оператора присвоювання
+    MyString str("hello");
+    MyString str2("hello World");
 
-    // s1.print(); // "Empty"
-    // s2.print(); // "Hello, World"
-    // s3.print(); // "Hello, World"
-    s4.print(); // "Empty"
-    s5.print(); // "Hello, World"
+    str.print();
+    str2.print();
+
+    str = str2;
+
+    str.print();
+
+
+    // Виклик конструктору переміщення
+    
+    MyString o1( "hello" );
+    o1.print();
+
+    MyString o2( std::move( o1 ) );
+
+    o2.print();
+    o1.print();
 
     return 0;
 }
