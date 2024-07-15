@@ -3,149 +3,173 @@
 #include <cstring>
 
 
-// Перевантаження оператора =, Конструктор перенесення та Конструктор копіювання
 
-class MyString {
+// Базове наслідування, порядок побудови дочірніх класів, protected:
+
+
+
+// Базове наслідування
+
+// Батьківський клас ( базовий клас )
+class Animal 
+{
 public:
-    // Конструктор за замовчуванням
-    MyString() : data(nullptr) {}
-
-    MyString( const char *str )
-    {
-        if (str != nullptr) {
-            data = new char[strlen(str) + 1];
-            strcpy(data, str);
-        } else {
-            data = nullptr;
-        }
+    void eat() {
+        std::cout << "Animal is eating." << std::endl;
     }
 
-    // Конструктор копіювання
-    MyString( const MyString &obj )
-    {
-        std::cout << " constructor copy " << std::endl;
-        if ( obj.data != nullptr )
-        {
-            data = new char[ strlen(obj.data) + 1 ];
-
-            for ( int i = 0; i < strlen(obj.data); i++)
-                data[i] = obj.data[i];
-            data[strlen(obj.data)] = '\0';
-        }
-        else
-        {
-            data = nullptr;
-        }
+    void sleep() {
+        std::cout << "Animal is sleeping." << std::endl;
     }
-
-   
-
-
-
-
-    // Перевантаження оператора присвоювання
-    MyString& operator = ( const MyString &obj )
-    {
-        std::cout << " operator = " << std::endl;
-        if ( this == &obj )
-        {
-            return *this;
-        }
-
-        if ( data != nullptr && obj.data != nullptr )
-        {
-            delete [] data;
-
-            data = new char[ strlen(obj.data) + 1 ];
-
-            for ( int i = 0; i < strlen(obj.data); i++)
-                data[i] = obj.data[i];
-            data[strlen(obj.data)] = '\0';
-        }
-        return *this;
-    }
-
-    // Конструктор переміщення
-    MyString( MyString && obj)
-    {
-        data = obj.data;
-        obj.data = nullptr;
-    }
-    
-
-    // Деструктор
-    ~MyString() {
-        if (data != nullptr)
-        {
-            
-            delete[] data;
-            std::cout << "destructor" << std::endl;
-        }
-    }
-
-    // Виведення рядка
-    void print() const
-    {
-        if ( data != nullptr )
-            std::cout << data << std::endl;
-        else
-            std::cout << " str is empty " << std::endl;
-    }
-    
-
-private:
-    // MyString( const MyString &obj ) = delete; // заборона використання конструктора копіювання !!!
-    // MyString& operator = ( const MyString &obj ) = delete; // заборона використання оператора = !!!
-    char * data;
-
 };
 
-void print( const MyString obj )
+
+
+// Похідний клас (підклас), який успадковує властивості Animal
+class Dog : public Animal
 {
-    obj.print();
-}
+public:
+    void bark() {
+        std::cout << "Dog is barking." << std::endl;
+    }
+};
 
-int main() 
+// int main() {
+
+//     // Створюємо об'єкт класу Dog
+//     Dog dog;
+
+//     // Викликаємо методи які успадковані від Animal
+//     dog.eat();
+//     dog.sleep();
+
+//     // Викликаємо метод, який визначений у класі Dog
+//     dog.bark();
+
+
+//     // Animal animal;
+//     // animal.eat();
+//     // animal.sleep();
+
+//     return 0;
+// }
+
+
+
+//=============================================================================================================================================
+
+
+
+
+// Ключове слово protected:
+
+class Gander
 {
+protected:
+    std::string man_woman;
+public:
+    Gander(std::string people = "") : man_woman(people)
+    {
+        std::cout << "Gander(std::string people = "")" << std::endl;
+    }
+   
+    // std::string getPeople(){
+    //     return man_woman;
+    // }
+};
+ 
+
+// Player відкрито успадковує Gander
+class Player : public Gander
+{
+    std::string name;
+    int age;
+public:
+    Player(std::string name, int age, std::string people) : name(name), age(age)
+    {
+        std::cout << "Player(std::string name, int age, std::string people)" << std::endl;
+    }
 
 
-    MyString str( "Hello world" );
-    str.print();
+    void print(){
+        std::cout << name << ' ' << age << ' ' << man_woman << std::endl;
+    }
+};
 
+void pritn(int hfhhfhf){}
 
+int main()
+{
+    Player human1("Anton", 25, "Man");
 
-    // // Виклик конструктору копіювання
-    MyString str2( str );
-    str2.print();
+    human1.print();
+    // std::cout << human1.getPeople() << std::endl;
 
-    print(str2);
+    // pritn(333);
 
-    MyString str3 = str2;
-    str3.print();
-
-
-
-    // Виклик перевантаженого оператора присвоювання
-    MyString str("hello");
-    MyString str2("hello World");
-
-    str.print();
-    str2.print();
-
-    str = str2;
-
-    str.print();
-
-
-    // Виклик конструктору переміщення
-    
-    MyString o1( "hello" );
-    o1.print();
-
-    MyString o2( std::move( o1 ) );
-
-    o2.print();
-    o1.print();
-
+    // Gander gander;
     return 0;
 }
+
+
+
+
+
+
+//=============================================================================================================================================
+
+
+
+
+// Порядок побудови дочірніх класів
+class A
+{
+public:
+    A()
+    {
+        std::cout << "A\n";
+    }
+};
+ 
+class B : public A
+{
+public:
+    B()
+    {
+        std::cout << "B\n";
+    }
+};
+ 
+class C : public B
+{
+public:
+    C()
+    {
+        std::cout << "C\n";
+    }
+};
+ 
+class D: public C
+{
+public:
+    D()
+    {
+        std::cout << "D\n";
+    }
+};
+
+
+// int main()
+// {
+    // std::cout << "Constructing A: \n";
+    // A cA;
+ 
+    // std::cout << "Constructing B: \n";
+    // B cB;
+ 
+    // std::cout << "Constructing C: \n";
+    // C cC;
+ 
+    // std::cout << "Constructing D: \n";
+    // D cD;
+// }
