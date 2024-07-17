@@ -5,109 +5,23 @@
 
 
 // Базове наслідування, порядок побудови дочірніх класів, protected:
-
-
-
-// Базове наслідування
-
-// Батьківський клас ( базовий клас )
-class Animal 
-{
-public:
-    void eat() {
-        std::cout << "Animal is eating." << std::endl;
-    }
-
-    void sleep() {
-        std::cout << "Animal is sleeping." << std::endl;
-    }
-};
-
-
-
-// Похідний клас (підклас), який успадковує властивості Animal
-class Dog : public Animal
-{
-public:
-    void bark() {
-        std::cout << "Dog is barking." << std::endl;
-    }
-};
-
-// int main() {
-
-//     // Створюємо об'єкт класу Dog
-//     Dog dog;
-
-//     // Викликаємо методи які успадковані від Animal
-//     dog.eat();
-//     dog.sleep();
-
-//     // Викликаємо метод, який визначений у класі Dog
-//     dog.bark();
-
-
-//     // Animal animal;
-//     // animal.eat();
-//     // animal.sleep();
-
-//     return 0;
-// }
-
-
-
-//=============================================================================================================================================
-
-
-
-
 // Ключове слово protected:
 
-class Gander
+class Parent
 {
-protected:
-    std::string man_woman;
-public:
-    Gander(std::string people = "") : man_woman(people)
-    {
-        std::cout << "Gander(std::string people = "")" << std::endl;
-    }
-   
-    // std::string getPeople(){
-    //     return man_woman;
-    // }
-};
- 
 
-// Player відкрито успадковує Gander
-class Player : public Gander
-{
-    std::string name;
-    int age;
-public:
-    Player(std::string name, int age, std::string people) : name(name), age(age)
-    {
-        std::cout << "Player(std::string name, int age, std::string people)" << std::endl;
-    }
-
-
-    void print(){
-        std::cout << name << ' ' << age << ' ' << man_woman << std::endl;
-    }
 };
 
-void pritn(int hfhhfhf){}
+
+class Child
+{
+
+};
+
 
 int main()
 {
-    Player human1("Anton", 25, "Man");
-
-    human1.print();
-    // std::cout << human1.getPeople() << std::endl;
-
-    // pritn(333);
-
-    // Gander gander;
+    
     return 0;
 }
 
@@ -173,3 +87,106 @@ public:
     // std::cout << "Constructing D: \n";
     // D cD;
 // }
+
+
+
+
+
+
+
+
+
+
+//=============================================================================================================================================
+// Множинне спадкування в С++, перевизначення методів батьківського класу 
+
+
+
+
+
+// приклад перевизначення методів батьківського класу 
+
+class Parent {
+public:
+    void show() {
+        std::cout << "This is the Parent class." << std::endl;
+    }
+};
+
+
+
+class Child : public Parent {
+public:
+    void show() {
+        std::cout << "This is the Child class." << std::endl;
+    }
+};
+
+
+int main() 
+{
+    Parent p;
+    Child c;
+
+    // Виклик методу батьківського класу
+
+
+    // Виклик перевизначеного методу в похідному класі
+
+    return 0;
+}
+
+
+
+
+
+// Множинне спадкування в С++
+
+// class A
+// {
+ 
+
+// public:
+//     int value;
+// };
+
+
+
+// Базовий клас
+class Animal {
+public:
+    void speak() {
+        std::cout << "Тварина говорить" << std::endl;
+    }
+};
+
+
+
+// Ще один базовий клас
+class Bird  {
+public:
+    void chirp() {
+        std::cout << "Пташка щебече" << std::endl;
+    }
+};
+
+
+
+
+// Клас, який успадковує від обох базових класів
+class Parrot : public Animal, public Bird {
+public:
+    void mimic() {
+        std::cout << "Папуга імітує" << std::endl;
+    }
+};
+
+int main() {
+    Parrot parrot;
+    
+    parrot.speak();  // Викликає метод з базового класу Animal
+    parrot.chirp();  // Викликає метод з базового класу Bird
+    parrot.mimic();  // Викликає метод класу Parrot
+    
+    return 0;
+}
