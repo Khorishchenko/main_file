@@ -63,7 +63,6 @@ struct Student
 };
 
 
-
 class Person
 {
 private:
@@ -121,42 +120,9 @@ public:
 };
 
 
-
 int main()
 {
 
-    Person person;
-
-
-    person.setAge(100);
-    person.setName("John Doe");
-    person.setID(111);
-
-    std::string name = person.getName();
-
-    std::cout << name << std::endl;
-
-    // std::cout << "Age: " << person.getAge() << std::endl;
-    // std::cout << "Name: " << person.getName() << std::endl;
-    // std::cout << "ID: " << person.getID() << std::endl;
-
-
-    person.Print();
-
-    // Person person {"Jane Doe", 25, "female"};
-
-    // std::cout << "Person: " << person.name << ", Age: " << person.age << " ID: " << person.ID << std::endl;
-
-    // Person person2  {30, "name", 777};
-
-    // std::cout << "Person 2: " << person2.name << ", Age: " << person2.age << " ID: " << person2.ID << std::endl;
-
-   
-
-
-    Student student3;
-    student3.name = "Anton";
-    student3.age = 20;
 }
 
 
@@ -167,32 +133,142 @@ int main()
 
 
 
-// Умова 1: Що таке клас. Створення класу.
-// Створіть клас Person, який буде представляти особу з такими атрибутами: ім'я, вік, стать. 
-
-
-// Умова 2: Що таке об'єкт класу.
-// Створіть кілька об'єктів класу Person і встановіть їхні атрибути (ім'я, вік, стать) для кожного об'єкта.
 
 
 
-// Умова 3: Примірник класу.
-// За допомогою об'єктів класу Person, створіть метод displayInfo(), який виводитиме інформацію про кожну особу (ім'я, вік, стать) в консоль.
+// Конструктор Деструктор, спискова ініціалізація
 
-
-// Умова 4: Методи класу.
-// Додайте метод до класу Person, який дозволить змінювати вік особи. Назвіть цей метод, наприклад, setAge(int age).
-
-
-
-// Умова 5: Модифікатори доступу класів.
-// Змініть модифікатор доступу до атрибуту "стать" класу Person з "public" на "private". Внесіть необхідні зміни в код, щоб забезпечити доступ до цього атрибуту через гетери та сетери.
-
-
-// Умова 6: Що таке гетери та сеттери для класу.
-// Додайте гетери (методи getGender()) та сетери (методи setGender()) для атрибуту "стать" в класі Person. Гетери повинні дозволяти отримувати значення атрибуту, а сетери - змінювати його.
+// Конструктори
+// Параметри конструкторів
+// За замовчуванням
+// Деструктори
+// Спискова ініціалізація
+// Реалізація методів за межами класу
+// Порядок виклику конструкторів та деструкторів
 
 
 
-// Умова 7: Інкапсуляція.
-// Впевніться, що доступ до атрибуту "стать" здійснюється через гетери та сетери, що забезпечує інкапсуляцію даних.
+
+// =============================================//
+// Конструктори - За замовчуванням/з параметрами
+
+
+class Studen
+{
+public:
+
+
+
+private:
+    int m_age;
+    std::string m_name;
+};
+
+// int main()
+// {
+//     Studen student1;
+//     student1.Print();
+
+//     Studen student2(20, "Anton");
+//     student2.Print();
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// =============================================//
+// Деструктор
+
+
+// class Array
+// {
+// public:
+    
+
+// private:
+//     int *m_ptr;
+//     int m_size;
+// };
+
+
+// int main()
+// {
+
+// }
+
+
+
+
+
+
+
+
+
+
+//=================================================================//
+// Реалізація методів за межами класу
+// Спискова ініціалізація
+
+
+// class Titan
+// {
+//     std::string _name;
+//     int m_age;
+//     const int size;
+// public:
+//     Titan(std::string name, int conssst) : _name(name), m_age(0), size(conssst)
+//     {
+//         // size = conssst;
+//     }
+
+//     void showName_Titan();
+// };
+
+// void Titan::showName_Titan()
+// {
+//     std::cout << _name << ' ' << m_age << ' '  << size << std::endl;
+// }
+
+
+// int main(){
+//     Titan b("Mark", 10);
+   
+//     b.showName_Titan();
+// }
+
+
+
+
+
+
+// =============================================//
+// Порядок виклику конструкторів та деструкторів
+
+// class A{
+// public:
+//     A() {std::cout << "This is const A" << std::endl;}
+//     ~A() { std::cout << "This is dest A " << std::endl; }
+// };
+
+
+// class B{
+// public:
+//     B() {std::cout << "This is const B" << std::endl;}
+//     ~B() { std::cout << "This is dest B " << std::endl; }
+// };
+
+// int main()
+// {
+//     A a;
+//     B b;
+// }
