@@ -267,34 +267,34 @@ int main()
 // В C++ абстракцію можна реалізувати через абстрактні класи та чисті віртуальні функції.
 
 
-// class Shape {
-// public:
-//     virtual void draw() = 0; // Чиста віртуальна функція
-// };
+class Shape {
+public:
+    virtual void draw() = 0; // Чиста віртуальна функція
+};
 
-// class Circle : public Shape {
-// public:
-//     void draw() override {
-//         std::cout << "Drawing Circle" << std::endl;
-//     }
-// };
+class Circle : public Shape {
+public:
+    void draw() override {
+        std::cout << "Drawing Circle" << std::endl;
+    }
+};
 
-// class Square : public Shape {
-// public:
-//     void draw() override {
-//         std::cout << "Drawing Square" << std::endl;
-//     }
-// };
+class Square : public Shape {
+public:
+    void draw() override {
+        std::cout << "Drawing Square" << std::endl;
+    }
+};
 
-// int main() {
-//     Shape* s1 = new Circle();
-//     Shape* s2 = new Square();
+int main() {
+    Shape* s1 = new Circle();
+    Shape* s2 = new Square();
 
-//     s1->draw(); // Виведе: Drawing Circle
-//     s2->draw(); // Виведе: Drawing Square
+    s1->draw(); // Виведе: Drawing Circle
+    s2->draw(); // Виведе: Drawing Square
 
-//     delete s1;
-//     delete s2;
+    delete s1;
+    delete s2;
 
-//     return 0;
-// }
+    return 0;
+}

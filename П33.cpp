@@ -1,48 +1,11 @@
 #include <iostream>
 
-
-
-
-
-// int main()
-// {
-//     int i;
-//     char name;
-
-
-//     Student student1 = {"John Doe", 18};
-//     Student student2 = {"Jane Smith", 22};
-
-//     std::cout << "Student 1: " << student1.name << ", Age: " << student1.age << std::endl;
-//     std::cout << "Student 2: " << student2.name << ", Age: " << student2.age << std::endl;
-
-
-
-//     std::cout << "Student 3: " << student3.name << ", Age: " << student3.age << std::endl;
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Що таке ООП простими словами.
 // Інкапсуляція. Поліморфізм. Успадкування.
 // Що таке клас. Що таке об'єкт класу? Примірник класу це
 // Методи класу. Що таке методи у програмуванні
 // Модифікатори доступу класів. public private protected що це
 // Що таке гетери та сеттери для класу. Методи get та set. Інкапсуляція це
-
 
 
 // # Об’єктно-орієнтоване програмування (ООП) 
@@ -56,75 +19,39 @@
 // # Клас — це креслення (план) цього об’єкта.
 
 
-struct Student
-{
-    int age;
-    std::string name;
-};
 
 
-class Person
-{
-private:
-    int age;
-    std::string name;
-    int ID;
 
 
-public:
+#include <iostream>
+#include <sstream>
+using namespace std;
 
-    void setAge(int Age)
-    {
-        if ( Age > 0 )
-        {
-            age = Age;
-        }
-        else 
-        {
-            age = 0;
-        }
-    }
+/*
+Enter code for class Student here.
+Read statement for specification.
+*/
 
-    void setName(std::string Name)
-    {
-        name = Name;
-    }
-
-    void setID(int iD)
-    {
-        if ( iD > 0 )
-            ID = iD;
-        else
-            ID = 0;
-    }
-
-    int getAge() 
-    {
-        return age;
-    }
-
-    std::string getName()
-    {
-        return name;
-    }
-
-    int getID()
-    {
-        return ID;
-    }
-
-    void Print()
-    {
-        std::cout << "Person: " << name << ", Age: " << age << " ID: " << ID << std::endl;
-    }
-};
-
-
-int main()
-{
-
+int main() {
+    int age, standard;
+    string first_name, last_name;
+    
+    cin >> age >> first_name >> last_name >> standard;
+    
+    Student st;
+    st.set_age(age);
+    st.set_standard(standard);
+    st.set_first_name(first_name);
+    st.set_last_name(last_name);
+    
+    cout << st.get_age() << "\n";
+    cout << st.get_last_name() << ", " << st.get_first_name() << "\n";
+    cout << st.get_standard() << "\n";
+    cout << "\n";
+    cout << st.to_string();
+    
+    return 0;
 }
-
 
 
 
