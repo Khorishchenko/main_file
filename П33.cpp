@@ -24,51 +24,6 @@
 
 
 
-
-
-
-
-
-#include <iostream>
-#include <sstream>
-using namespace std;
-
-/*
-Enter code for class Student here.
-Read statement for specification.
-*/
-
-int main() {
-    int age, standard;
-    string first_name, last_name;
-    
-    cin >> age >> first_name >> last_name >> standard;
-    
-    Student st;
-    st.set_age(age);
-    st.set_standard(standard);
-    st.set_first_name(first_name);
-    st.set_last_name(last_name);
-    
-    cout << st.get_age() << "\n";
-    cout << st.get_last_name() << ", " << st.get_first_name() << "\n";
-    cout << st.get_standard() << "\n";
-    cout << "\n";
-    cout << st.to_string();
-    
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
 // Конструктор Деструктор, спискова ініціалізація
 
 // Конструктори
@@ -80,39 +35,8 @@ int main() {
 // Порядок виклику конструкторів та деструкторів
 
 
-
-
 // =============================================//
 // Конструктори - За замовчуванням/з параметрами
-
-
-class Studen
-{
-public:
-
-
-
-private:
-    int m_age;
-    std::string m_name;
-};
-
-// int main()
-// {
-//     Studen student1;
-//     student1.Print();
-
-//     Studen student2(20, "Anton");
-//     student2.Print();
-// }
-
-
-
-
-
-
-
-
 
 
 
@@ -122,21 +46,85 @@ private:
 // =============================================//
 // Деструктор
 
+// #include <time.h>
 
 // class Array
 // {
 // public:
-    
+//     Array( int size = 0 ) : m_size ( size )
+//     {
+//         if ( m_size > 0 )
+//         {
+//             m_ptr = new int[m_size];
+//             for ( int i = 0; i < m_size; ++i )
+//             {
+//                 m_ptr[i] = rand() % 10;
+//             }
+//         }
+//         else
+//         {
+//             m_ptr = nullptr;
+//             m_size = 0;
+//         }
+//     }
+
+//     void Print()
+//     {
+//         if ( m_ptr != nullptr )
+//         {
+//             for ( int i = 0; i < m_size; ++i )
+//             {
+//                 std::cout << m_ptr[i] << " ";
+//             }
+//             std::cout << std::endl;
+//         }
+//         else
+//         {
+//             std::cout << "Array is empty." << std::endl;
+//         }
+//     }
+
+//     ~Array()
+//     {
+//         if ( m_ptr != nullptr )
+//         {
+//             delete[] m_ptr;
+//             m_ptr = nullptr;
+//             std::cout << "destructor" << std::endl;
+//         }
+//         else
+//         {
+//             std::cout << "404" << std::endl;
+//         }
+        
+//     }
+
 
 // private:
 //     int *m_ptr;
 //     int m_size;
+
+
 // };
 
 
 // int main()
 // {
+//     srand(time(NULL));
 
+//     int size;
+//     std::cout << "Enter the size of array: ";
+//     std::cin >> size;
+
+//     {
+//         Array arr(size);
+//         arr.Print();
+//     }
+
+//     std::cout << "function main () workings" << std::endl;
+
+
+//     int value;
 // }
 
 
@@ -183,25 +171,24 @@ private:
 
 
 
-
 // =============================================//
 // Порядок виклику конструкторів та деструкторів
 
-// class A{
-// public:
-//     A() {std::cout << "This is const A" << std::endl;}
-//     ~A() { std::cout << "This is dest A " << std::endl; }
-// };
+class A{
+public:
+    A() {std::cout << "This is const A" << std::endl;}
+    ~A() { std::cout << "This is dest A " << std::endl; }
+};
 
 
-// class B{
-// public:
-//     B() {std::cout << "This is const B" << std::endl;}
-//     ~B() { std::cout << "This is dest B " << std::endl; }
-// };
+class B{
+public:
+    B() {std::cout << "This is const B" << std::endl;}
+    ~B() { std::cout << "This is dest B " << std::endl; }
+};
 
-// int main()
-// {
-//     A a;
-//     B b;
-// }
+int main()
+{
+    A a;
+    B b;
+}
