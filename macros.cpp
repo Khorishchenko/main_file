@@ -81,7 +81,7 @@ using namespace std;
 
 
 
-#define ENABLE_LOG
+
 
 #ifdef ENABLE_LOG
     #define LOG(message) std::cout << message << std::endl
