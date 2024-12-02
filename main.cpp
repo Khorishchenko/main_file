@@ -1,23 +1,38 @@
 #include <iostream>
+#include <string>
+#include <set>
+#include <cctype>
+#include <algorithm>
+#include <sstream>
+#include <fstream>
 using namespace std;
 
-
-#include <time.h>
-#include <iostream>
-#include <cstdlib>
+set<string> getUniqueWords(const string& text) {
+    set<string> uniqueWords;
+    string word;
  
-using namespace std;
+    for (char ch : text) {
+        if (isalnum(ch)) {
+            word += ch;
+        }
+         else if (!word.empty()) {
+            uniqueWords.insert(word);
+            word.clear();
+        }
+        std::cout << word << std::endl;
+    }
+    return uniqueWords;
+}
  
-const int SIZE = 10;
-
-// void dynamicArr(int* arr, int size, int*& pos, int& posSize, int*& neg, int& negSize, int*& nul, int& nulSize); 
-
-
-int main()
-{
-
-
-
-
-    return 0;
+int main() {
+    string text = "Learning programming is an essential skill skill in todays digital world.\n You can extract unique words like Learning, programming, essential, skill, etc., to store them in your structure.";
+ 
+    set<string> uniqueWords = getUniqueWords(text);
+ 
+    cout << "\nUnique words in alphabetical order:" << endl;
+    for (const string& word : uniqueWords) {
+        cout << word << " ";
+    }
+    cout << endl;
+ 
 }
