@@ -1,3 +1,1 @@
-10 20.3 hello
-world cat dog
-100 23 505$
+Custom Exception new version: Division by zero
